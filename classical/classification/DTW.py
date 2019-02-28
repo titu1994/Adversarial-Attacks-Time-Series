@@ -199,6 +199,9 @@ class KnnDTW(object):
         """Predict the class label probability estimates for
         the provided data
 
+        > Implementation of Soft 1-NN DTW representation,
+        (Algorithm 1) from the paper "Adversarial Attacks on Time Series" [1]
+
         Arguments
         ---------
             x : array of shape [n_samples, n_timepoints]
@@ -209,6 +212,10 @@ class KnnDTW(object):
             2 arrays representing:
                 (1) the predicted class probabilities
                 (2) the knn labels
+
+        References
+        -------
+        [1] [Adversarial Attacks on Time Series]()
         """
         np.random.seed(0)
         dm = self._dist_matrix(x, self.x)
