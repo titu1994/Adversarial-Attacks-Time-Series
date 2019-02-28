@@ -199,8 +199,8 @@ class KnnDTW(object):
         """Predict the class label probability estimates for
         the provided data
 
-        > Implementation of Soft 1-NN DTW representation,
-        (Algorithm 1) from the paper "Adversarial Attacks on Time Series" [1]
+        > Implementation of Soft 1-NN DTW representation (Algorithm 1),
+        from the paper "Adversarial Attacks on Time Series" [1]
 
         Arguments
         ---------
