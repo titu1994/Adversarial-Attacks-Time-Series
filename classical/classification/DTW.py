@@ -217,6 +217,9 @@ class KnnDTW(object):
         -------
         [1] [Adversarial Attacks on Time Series]()
         """
+        if self.n_neighbors != 1:
+            raise RuntimeError("Soft-1NN transformation can only be applied to the K=1 case !")
+
         np.random.seed(0)
         dm = self._dist_matrix(x, self.x)
 
