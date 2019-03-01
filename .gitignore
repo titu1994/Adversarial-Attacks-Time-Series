@@ -87,7 +87,7 @@ models/image
 utils/image
 train_*
 vis_image_*
-utils/_losses
+utils/_losses.py
 
 # Environments
 .env
