@@ -91,7 +91,13 @@ The following methodology is more practical when visualizing adversaries :
 In summary, we find train time adversaries for all datasets that we try on, and subsequently also show generalization properties of the GATN on completely unseen data.
 
 
+# Additional Tools
 
+Alongside the codebase to create adversarial samples, we also provide a Numba-Optimized implementation of the basic Dynamic Time Warping with 100% warping width, found inside `classical/classification/DTW.py`. 
+
+Not only is this implementation multithreaded and LLVM optimized, thereby acheiving high speeds even for large time series or many samples in the dataset, this implementation also provides the "Soft 1-NN" transformation of the distance matrix of DTW for classification purposes.
+
+When using DTWProbabilistic, the "Soft 1-NN" transformation is being applied to DTW.
 
 
 
