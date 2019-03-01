@@ -87,7 +87,7 @@ models/image
 utils/image
 train_*
 vis_image_*
-_losses
+utils/_losses
 
 # Environments
 .env
