@@ -42,11 +42,7 @@ if __name__ == '__main__':
     TARGET_CLASS = 0
 
     # Hyper parameters for searching
-    TEACHER_WEIGHT = 1.0
-    TAU = 10.
-
-    ALPHA = 1.5
-    BETAS = [0.1, 0.05, 0.01, 0.005, 0.001, 0.0005, 0.0001, 0.00001]
+    beta = 0.  # Cosmetic. Does not impact eval as it does not train.
 
     log_path = 'logs/'
     log_name = 'gatn_nn_student_teacher_blackbox_results_test.csv'
@@ -70,49 +66,48 @@ if __name__ == '__main__':
         disable_printing()
 
     for dataset_id in datasets:
-        for beta in BETAS:
-            tf.keras.backend.reset_uids()
-            tf.keras.backend.clear_session()
+        tf.keras.backend.reset_uids()
+        tf.keras.backend.clear_session()
 
-            f = open(log_path, 'a+')
+        f = open(log_path, 'a+')
 
-            # Model name (used iff not None). Defaults to Model.name if this is None.
-            clf_model_name = 'gridsearch-blackbox-' + clf_model_fn.__name__
-            atn_model_name = 'gridsearch-nn-student-teacher-blackbox-' + atn_model_fn.__name__
-            student_model_name = 'gridsearch-nn-student-teacher-blackbox-' + student_model_fn.__name__
+        # Model name (used iff not None). Defaults to Model.name if this is None.
+        clf_model_name = 'gridsearch-blackbox-' + clf_model_fn.__name__
+        atn_model_name = 'gridsearch-nn-student-teacher-blackbox-' + atn_model_fn.__name__
+        student_model_name = 'gridsearch-nn-student-teacher-blackbox-' + student_model_fn.__name__
 
-            dataset = 'ucr/%s' % (str(dataset_id))
+        dataset = 'ucr/%s' % (str(dataset_id))
 
-            # checks if base classifier is available or not
-            basepath = 'weights/%s/%s/' % (dataset, clf_model_name)
-            # checks if base distilled classifier is available or not
-            student_basepath = 'gatn_weights/%s/%s/' % (dataset, student_model_name)
+        # checks if base classifier is available or not
+        basepath = 'weights/%s/%s/' % (dataset, clf_model_name)
+        # checks if base distilled classifier is available or not
+        student_basepath = 'gatn_weights/%s/%s/' % (dataset, student_model_name)
 
-            try:
-                mse, acc_realistic, acc_optimistic, rate, ids = test_scores_gatn(atn_model_fn, clf_model_fn,
-                                                                                 student_model_fn,
-                                                                                 dataset, TARGET_CLASS,
-                                                                                 atn_name=atn_model_name,
-                                                                                 clf_name=clf_model_name,
-                                                                                 student_name=student_model_name)
+        try:
+            mse, acc_realistic, acc_optimistic, rate, ids = test_scores_gatn(atn_model_fn, clf_model_fn,
+                                                                             student_model_fn,
+                                                                             dataset, TARGET_CLASS,
+                                                                             atn_name=atn_model_name,
+                                                                             clf_name=clf_model_name,
+                                                                             student_name=student_model_name)
 
-                print("Finished evaluating dataset %s with beta = %0.6f" % (dataset, beta))
+            print("Finished evaluating dataset %s with beta = %0.6f" % (dataset, beta))
 
-                update = template % (dataset_id, beta, mse, acc_realistic, acc_optimistic, rate, len(ids))
+            update = template % (dataset_id, beta, mse, acc_realistic, acc_optimistic, rate, len(ids))
 
-                f.write(update)
-                SUCCESS.append(update)
+            f.write(update)
+            SUCCESS.append(update)
 
-            except Exception as e:
-                print(e.with_traceback(None))
+        except Exception as e:
+            print(e.with_traceback(None))
 
-                tag = template % (dataset_id, beta, -1, -1, -1, -1, -1)
-                ERRORS.append(tag)
+            tag = template % (dataset_id, beta, -1, -1, -1, -1, -1)
+            ERRORS.append(tag)
 
-            f.flush()
-            f.close()
+        f.flush()
+        f.close()
 
-            print()
+        print()
 
     if not PRINT_OUTPUTS:
         enable_printing()
