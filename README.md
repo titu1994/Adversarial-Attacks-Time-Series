@@ -1,6 +1,6 @@
 # Adversarial Attacks on Time Series
 
-Codebase for the paper [Adversarial Attacks on Time Series]() that can be used to create adversarial samples using Gradient Adversarial Transformation Network to attack either Neural Networks (LeNet-5, Fully Convolutional Network) or Classical Models (1-Nearest Neighbor Dynamic Time Warping Classifier with 100% Warping Window).
+Codebase for the paper [Adversarial Attacks on Time Series](https://arxiv.org/abs/1902.10755) that can be used to create adversarial samples using Gradient Adversarial Transformation Network to attack either Neural Networks (LeNet-5, Fully Convolutional Network) or Classical Models (1-Nearest Neighbor Dynamic Time Warping Classifier with 100% Warping Window).
 
 The codebase can be used to execute either White-box or Black-box attacks on either NN's or Classical Models, and therefore the scripts are seperated into 4 different categories.
 
@@ -99,6 +99,12 @@ Not only is this implementation multithreaded and LLVM optimized, thereby acheiv
 
 When using DTWProbabilistic, the "Soft 1-NN" transformation is being applied to DTW.
 
+# Citations
+@article{karim_majumdar2019insights,
+  title={Adversarial Attacks on Time Series},
+  author={Karim, Fazle and Majumdar, Somshubra and Darabi, Houshang },
+  journal={Arxiv},
+ }
 
 
 
