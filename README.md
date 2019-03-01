@@ -44,7 +44,7 @@ In all of these scripts, you will notice 2 or 3 variables called `atn_model_fn`,
 
 **It is important to note that when building custom Models for use, they most follow the pattern exhibited by the pre-built models - constructor which accepts the name as an argument, parameters defined in the constructor, and the call method must follow the same pattern across all models belonging to that module, otherwise the results generated will be erroneous**.
 
-### Searching for Adversaries
+## Searching for Adversaries
 
 This is the main script, used to create the adversarial sample generator. There are many parameters that may be edited.
 
@@ -60,7 +60,7 @@ The logs generated from this script contain some useful information, such as the
 #### Please Note: To conserve disk space, only the LAST beta weights are stored. As it is relatively fast to train the GATN once the classifier and student are trained, you can quickly train another GATN on the specific beta you require by observing the log files.
 -----
 
-### Evaluating the Trained GATN on unseen Test Split
+## Evaluating the Trained GATN on unseen Test Split
 
 As described in the paper, we utilize one randomly sampled half of the test set of the UCR dataset to train the student and the GATN model, and provide scores on this dataset inside the log files during `search`. 
 
@@ -69,7 +69,7 @@ We can then evaluate the generation of adversarial samples on the unseen "Test" 
 #### Note: Since only the last weights of beta are stored, only 1 evaluation can be performed per dataset. There aren't any parameters other than `TARGET_CLASS` in these scripts. We do provide a placeholder for `beta`, which is saved into logs, but this is a cosmetic change which does not affect the actual evaluation process. 
 -----
 
-### Visualizing the Adversarial Time Series
+## Visualizing the Adversarial Time Series
 
 Once the models have been trained via `search*`, we can evaluate these models using the `viz*` scripts.
 
