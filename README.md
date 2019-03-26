@@ -100,11 +100,11 @@ Not only is this implementation multithreaded and LLVM optimized, thereby acheiv
 When using DTWProbabilistic, the "Soft 1-NN" transformation is being applied to DTW.
 
 # Citations
+
+```
 @article{karim_majumdar2019insights,
   title={Adversarial Attacks on Time Series},
   author={Karim, Fazle and Majumdar, Somshubra and Darabi, Houshang },
   journal={Arxiv},
  }
-
-
-
+```
