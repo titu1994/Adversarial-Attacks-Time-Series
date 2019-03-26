@@ -4,6 +4,8 @@ Codebase for the paper [Adversarial Attacks on Time Series](https://arxiv.org/ab
 
 The codebase can be used to execute either White-box or Black-box attacks on either NN's or Classical Models, and therefore the scripts are seperated into 4 different categories.
 
+<img src="https://github.com/titu1994/Adversarial-Attacks-Time-Series/blob/master/images/adversarial_attack.PNG?raw=true" height=33% width=100%>
+
 # Installation
 
 Download the repository and apply `pip install -r requirements.txt` to install the required libraries. Please note that this library uses Tensorflow 1.12 with Eager Execution enabled. However, as Tensorflow comes in CPU and GPU variants, we default to the **CPU** variant.
